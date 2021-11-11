@@ -24,6 +24,7 @@ db.connect((err) => {
 
 app.use(express.json())
 
+const apiBaseUrl = "/api"
 
 
 // respond with "hello world" when a GET request is made to the homepage
@@ -33,17 +34,18 @@ app.post('/login', function (req, res) {
   res.send({ userId: 1 })
 })
 
-app.post('/listprojects', function (req, res) {
-  const { userId } = req.body
-  // Get projects from database
-  res.send([{
-    "id": 2,
-    "user_id": 1,
-    "name": "SWT",
-    "budget": 80000,
-    "description": "Smart Watch Tracker"
-  }])
+app.get(apiBaseUrl + '/projects/:userId', function (req, res) {
+  const userId = req.params.userId;
+
+  let sql = `SELECT * FROM project p WHERE p.user_id=` + userId;
+  db.query(sql, (error, results, fields) => {
+    if (error) {
+      return res.send("The following project for the user is not found.");
+    }
+    res.send(results);
+  });
 })
+
 
 app.post('/listexpenses', function (req, res) {
   const { projectId } = req.body

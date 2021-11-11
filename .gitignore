@@ -24,7 +24,7 @@ yarn-error.log*
 
 
 # intellij files
-/back-end/node_modules
+/back_end/node_modules
 /.idea
 /.iml
 /.ipr

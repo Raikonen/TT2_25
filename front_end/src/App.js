@@ -1,7 +1,9 @@
 import FormExampleForm from "./Form.js";
 import './App.css';
-import {Home} from './Components/Home';
-import {Expenses} from './Components/Expenses';
+import {Home} from './Home';
+
+import {Projects} from './Projects'
+
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 
@@ -12,11 +14,9 @@ function App() {
       <div> 
       
       <Routes>
-     
-
-      <Route path='/' component={FormExampleForm} exact />
+      <Route path='/' component={FormExampleForm} />
       <Route path='/home' component={Home} />
-      <Route path='/expenses' component={Expenses} />
+      <Route path='/projects' component={Projects} />
       
     
       </Routes>

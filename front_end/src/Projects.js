@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Table} from 'react-bootstrap';
 import {Button, ButtonToolbar, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Navigate} from 'react-router-dom';
 
 export class Projects extends Component {
 
@@ -34,8 +35,8 @@ export class Projects extends Component {
     render(){
     
     const{projs, projid, projname}=this.state;
-    const redirectOut = this.state.redirectOut;
-        if (redirectOut === true) {
+    const redirectTo = this.state.redirectTo;
+        if (redirectTo === true) {
             return <Navigate to="/expenses" />
         }
 

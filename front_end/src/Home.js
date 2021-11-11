@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navigation} from './Navigation';
-import {Redirect} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import {Modal, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LogoutIcon from '@mui/icons-material/Logout';
+
 
 
 export class Home extends Component {
@@ -25,11 +25,8 @@ export class Home extends Component {
         })
         .then(resp => resp.json())
         .then(results => {
-            if() {
-                this.setState({redirectOut: true});
-                } else {
-                  this.setState({user: results.name});
-                }
+            console.log('hi');
+                
         });
      }
 
@@ -69,12 +66,12 @@ export class Home extends Component {
     render (){
         const redirectOut = this.state.redirectOut;
         if (redirectOut === true) {
-            return <Redirect to="/" />
+            return <Navigate to="/" />
         }
 
         const redirectProj = this.state.redirectProj;
         if (redirectProj === true) {
-            return <Redirect to="/Projects" />
+            return <Navigate to="/Projects" />
         }
 
         const {user} =this.state;
@@ -89,7 +86,7 @@ export class Home extends Component {
                 color="grey"
                 onClick={()=>{this.setState({modalLOOpen: true})}}
                 >
-            <div className="logouticon"><LogoutIcon fontSize="small" />Log Out</div>
+            <div className="logouticon">Log Out</div>
             </IconButton>
             </div>
 

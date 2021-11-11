@@ -39,7 +39,7 @@ export class Home extends Component {
             headers: {
                 'Content-Type':'application/json'
             },
-            credentials:'include'
+            credentials:'include' hi
             })
             .then(rep=>rep.json())
             .then((resp)=>

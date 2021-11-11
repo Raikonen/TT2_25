@@ -1,25 +1,38 @@
+import Background from "./dbs-bank-logo.jpg";
 import React, { useState } from "react";
-import { Button, Form, Segment, Grid, Header, Icon } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Segment,
+  Grid,
+  Header,
+  Icon,
+  Image,
+} from "semantic-ui-react";
+import { sha256, sha224 } from "js-sha256";
 
 const FormExampleForm = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [pwd, setPwd] = useState("");
   const [logIn, setLogIn] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
 
-  const handleEmail = (event) => {
-    console.log("handle email");
+  const handleUsername = (event) => {
+    console.log("handle usename");
     console.log(event);
-    setEmail(event.target.value);
+    setUsername(event.target.value);
   };
+
   const handlePwd = (event) => {
     setPwd(event.target.value);
   };
   const handleSubmitSignUp = (event) => {
     event.preventDefault();
   };
-  const handleSubmitSignIn = (event) => {
+
+  const handleSubmitSignIn = async (event) => {
     event.preventDefault();
+    console.log(`Form submitted, Username: ${username}, Password: ${pwd}`);
   };
 
   const setSignUp = () => {
@@ -52,9 +65,9 @@ const FormExampleForm = () => {
                       marginLeft: "-30%",
                       minWidth: "180%",
                     }}
-                    value={email}
-                    onChange={handleEmail}
-                    placeholder="E-mail"
+                    value={username}
+                    onChange={handleUsername}
+                    placeholder="Username"
                   />
                 </Form.Field>
                 <Form.Field>
@@ -82,7 +95,13 @@ const FormExampleForm = () => {
             </Segment>
           </Grid.Column>
           <Grid.Column width={8} centered>
-            <div></div>
+            <div
+              style={{
+                background: `url(${Background})`,
+                minHeight: "250%",
+                marginLeft: "0%",
+              }}
+            ></div>
           </Grid.Column>
         </Grid>
       );
@@ -110,9 +129,9 @@ const FormExampleForm = () => {
                       marginLeft: "-30%",
                       minWidth: "180%",
                     }}
-                    value={email}
-                    onChange={handleEmail}
-                    placeholder="E-mail"
+                    value={username}
+                    onChange={handleUsername}
+                    placeholder="Username"
                   />
                 </Form.Field>
                 <Form.Field>
@@ -138,6 +157,15 @@ const FormExampleForm = () => {
                 </Button>
               </Form>
             </Segment>
+          </Grid.Column>
+          <Grid.Column width={8} centered>
+            <div
+              style={{
+                background: `url(${Background})`,
+                minHeight: "250%",
+                marginLeft: "0%",
+              }}
+            ></div>
           </Grid.Column>
         </Grid>
       );

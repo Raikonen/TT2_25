@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button, Form, Segment, Grid, Header, Icon } from "semantic-ui-react";
 import { sha256 } from "js-sha256";
 import axios from "axios";
-// import HomettPage from "./Home";
+import HomePage from "./Home";
 
 const FormExampleForm = () => {
   const [username, setUsername] = useState("");
@@ -186,7 +186,7 @@ const FormExampleForm = () => {
       );
     }
   } else {
-    return;
+    return <HomePage />;
   }
 };
 

@@ -1,4 +1,4 @@
-import FormExampleForm from "./Form.js";
+import FormExampleForm from "./Form1.js";
 import "semantic-ui-css/semantic.min.css";
 function App() {
   return (

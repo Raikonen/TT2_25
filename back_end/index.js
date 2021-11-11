@@ -40,28 +40,27 @@ app.get(apiBaseUrl + '/projects/:userId', function (req, res) {
   let sql = `SELECT * FROM project p WHERE p.user_id=` + userId;
   db.query(sql, (error, results, fields) => {
     if (error) {
-      return res.send("The following project for the user is not found.");
+      return res.send({
+        "message": "The following project for the user could not be found."
+      });
     }
     res.send(results);
   });
 })
 
+app.get(apiBaseUrl + '/projects/:projectId/project-information', async function (req, res) {
+  const projectId = req.params.projectId;
 
-app.post('/listexpenses', function (req, res) {
-  const { projectId } = req.body
-  // Get expenses for a particular project from database
-  res.send([{
-    "id": 1,
-    "project_id": 2,
-    "category_id": 2,
-    "name": "Server Maintenance",
-    "description": "Server maintenance and upgrading work to incorporate BC plans",
-    "amount": 30000,
-    "created_at": "2021-11-04T16:00:00.000Z",
-    "created_by": "Jacky",
-    "updated_at": "2021-11-06T16:00:00.000Z",
-    "updated_by": "Jacky"
-  }])
+  let sql = `SELECT * FROM project p WHERE p.id =` + projectId;
+
+  const projects = await db.query(sql, (results, fields).then(results => {
+    return results;
+  })
+  .catch(() => {
+    return res.send({
+      "message": "The following project details could not be found."
+    });
+  }));
 })
 
 app.post('/addexpense', function (req, res) {

@@ -1,10 +1,30 @@
-import express from 'express';
-import bodyParser from 'body-parser'
+//import express from 'express';
 
+var express = require('express')
 var app = express()
 const port = "3001"
 
+// Database initialization
+
+var MySQL = require('mysql2')
+var db = MySQL.createConnection({
+    host: 'localhost',
+    user: 'root', // Change this to what your DB username is. Default => 'root'
+    password: 'Password', // Change this to what you set your DB password is. 
+    database: 'project_expenses' // Default => 'project_expenses', same as the name of your DB
+})
+
+db.connect((err) => {
+    if (err){
+        throw err;
+    }
+    console.log('MySQL is connected...')
+
+})
+
 app.use(express.json())
+
+
 
 // respond with "hello world" when a GET request is made to the homepage
 app.post('/login', function (req, res) {
@@ -65,3 +85,18 @@ app.post('/deleteexpense', function (req, res) {
 app.listen(port, () => {
   console.log(`Listening to requests on http://localhost:${port}`);
 });
+
+
+/* Methods to test the functionality of the database */
+
+// Select posts
+app.get('/getposts', (req,res) => {
+  let sql = 'SELECT * FROM user';
+  let query = db.query(sql, (err,results)=> {
+    if (err){
+      throw error;
+    }
+    console.log(results)
+    res.send('Posts fetched...')
+  })
+})
